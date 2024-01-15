@@ -24,7 +24,7 @@ The exporter relies on environment variables, you can set:
 
 - `MIKROTIK_IP`: IP to your MikroTik router (default value: `192.168.88.1`),
 - `MIKROTIK_WEBFIG_PORT`: port number to your MikroTik router WebFig (default value: `80`),
-- 1MIKROTIK_REST_API_METHOD`: method of querying WebFig, one could use `http` or `https` (default value: `http`),
+- `MIKROTIK_REST_API_METHOD`: method of querying WebFig, one could use `http` or `https` (default value: `http`),
 - `MIKROTIK_USER`: username of used account on the MikroTik (default: `admin`, however I suggest to change it),
 - `MIKROTIK_PASSWORD`: self explainatory, password to the user account on the MikroTik,
 - `MIKROTIK_REST_API_VERIFY_SSL`: Bash "boolean" whether REST API SSL certificate should be checked (default: `0` (False)),
