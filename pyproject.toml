@@ -1,0 +1,39 @@
+[project]
+name = "mikrotik_bandwidth_monitor_exporter"
+version = "0.1.0"
+dependencies = [
+  "flask>=3.0.0",
+  "requests>=2.31.0",
+  "waitress>=2.1.2",
+  "prometheus-client>=0.19.0",
+]
+requires-python = ">=3.8"
+authors = [
+  {name = "jagub2"},
+]
+maintainers = [
+  {name = "jagub2"},
+]
+description = "Mikrotik Bandwidth Exporter plugin for Prometheus"
+readme = "README.md"
+license = {file = "LICENSE.txt"}
+classifiers = [
+  "Programming Language :: Python"
+]
+
+[project.urls]
+Homepage = "https://github.com/jagub2/..."
+
+[project.scripts]
+mikrotik_bandwidth_monitor_exporter = "mikrotik_bandwidth_monitor_exporter.exporter:main"
+
+[build-system]
+requires = ["setuptools>=60.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.optional-dependencies]
+dev = [
+    "tox>=4",
+    "tox-ignore-env-name-mismatch"
+]
+

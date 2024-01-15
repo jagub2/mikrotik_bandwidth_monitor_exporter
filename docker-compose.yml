@@ -1,0 +1,52 @@
+version: '3.8'
+
+networks:
+  front-tier:
+  back-tier:
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.25.2
+    restart: unless-stopped
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    depends_on:
+      - bandwidth_monitor
+    ports:
+      - 19090:9090
+    networks:
+      - back-tier
+
+  bandwidth_monitor:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - bandwidth_monitor.env
+    networks:
+      - back-tier
+
+  grafana:
+    image: grafana/grafana
+    restart: unless-stopped
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    ports:
+      - '13000:3000'
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=flant-statusmap-panel,ae3e-plotly-panel
+    networks:
+      - back-tier
+      - front-tier
+

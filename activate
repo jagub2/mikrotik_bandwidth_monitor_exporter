@@ -1,0 +1,20 @@
+#!/bin/bash
+if [ -z ${BASH_SOURCE+x} ]; then
+   self="$0"
+else
+   self="${BASH_SOURCE[0]}"
+fi
+root_dir="$(readlink -f "$(dirname -- "${self}")")"
+install_param=$1; shift
+if ! test -d "${root_dir:?}/venv" || \
+   ! test -f "${root_dir:?}/venv/bin/activate" || \
+   [[ "${install_param}" == "-i" ]]; then
+    rm -rf "${root_dir:?}/venv"
+    python3 -m venv venv
+    # shellcheck source=/dev/null
+    source venv/bin/activate
+    python3 -m pip install '.[dev]'
+else
+    # shellcheck source=/dev/null
+    source venv/bin/activate
+fi
