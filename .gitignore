@@ -189,3 +189,4 @@ pip-selfcheck.json
 prometheus_data
 grafana_data
 bandwidth_monitor.env
+*.swp
