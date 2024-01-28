@@ -23,7 +23,7 @@
   },
   "editable": true,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 4,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -48,7 +48,7 @@
       },
       "gridPos": {
         "h": 19,
-        "w": 8,
+        "w": 12,
         "x": 0,
         "y": 0
       },
@@ -56,7 +56,8 @@
       "options": {
         "legend": {
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "pieType": "pie",
         "reduceOptions": {
@@ -105,15 +106,16 @@
       },
       "gridPos": {
         "h": 19,
-        "w": 8,
-        "x": 8,
+        "w": 12,
+        "x": 12,
         "y": 0
       },
       "id": 8,
       "options": {
         "legend": {
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "pieType": "pie",
         "reduceOptions": {
@@ -149,6 +151,9 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Used bandwidth",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -160,6 +165,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineStyle": {
               "fill": "solid"
@@ -170,7 +176,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": true,
+            "spanNulls": 1200000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -195,16 +201,17 @@
       },
       "gridPos": {
         "h": 19,
-        "w": 8,
+        "w": 12,
         "x": 0,
-        "y": 20
+        "y": 19
       },
       "id": 2,
       "options": {
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -236,6 +243,9 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Used bandwidth",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -247,6 +257,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineStyle": {
               "fill": "solid"
@@ -257,7 +268,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": true,
+            "spanNulls": 1200000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -277,20 +288,22 @@
             ]
           },
           "unit": "decmbytes"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 19,
-        "w": 8,
-        "x": 8,
-        "y": 20
+        "w": 12,
+        "x": 12,
+        "y": 19
       },
       "id": 3,
       "options": {
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -315,9 +328,8 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 36,
-  "style": "dark",
+  "refresh": "",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
@@ -330,6 +342,6 @@
   "timezone": "",
   "title": "Bandwidth usage",
   "uid": "6VhjXkcIk",
-  "version": 8,
+  "version": 1,
   "weekStart": ""
 }
