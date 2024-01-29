@@ -13,8 +13,8 @@ jobs:
     - name: checkout
       uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag {{ github.repository_owner }}/mikrotik_bandwidth_monitor_exporter:latest
+      run: docker build . --file Dockerfile --tag ${{ github.repository_owner }}/mikrotik_bandwidth_monitor_exporter:latest
     - name: Login to the Docker registry
       run: echo "${{ github.token }}" | docker login ghcr.io -u $ --password-stdin
     - name: Publish the Docker image
-      run: docker push ghcr.io/{{ github.repository_owner }}/mikrotik_bandwidth_monitor_exporter:latest
+      run: docker push ghcr.io/${{ github.repository_owner }}/mikrotik_bandwidth_monitor_exporter:latest
