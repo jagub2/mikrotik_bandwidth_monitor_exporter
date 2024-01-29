@@ -12,7 +12,7 @@ The name can be arbitrary, it does not matter.
 
 Then I strongly recommend to create a separate account than admin just for the sake of this exporter. Remember that that you need to give this account `write` permissions, as the exporter resets device counters after each query (to keep track of the used bandwidth).
 
-The exporter relies on the REST API, so you need make ensure WebFig is running.
+The exporter relies on the REST API, so you need make ensure WebFig is running. REST API requires RouterOS 7.1+, [more details here](https://help.mikrotik.com/docs/display/ROS/REST+API)).
 
 ## How to run it
 
