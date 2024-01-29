@@ -25,7 +25,7 @@ services:
       - back-tier
 
   bandwidth_monitor:
-    build: .
+    image: ghcr.io/jagub2/mikrotik_bandwidth_monitor_exporter:latest
     restart: unless-stopped
     env_file:
       - bandwidth_monitor.env
