@@ -3,6 +3,11 @@ name: Publish Docker Image
 on:
   [workflow_dispatch]
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.actor }}/${{ github.repository }}
+  VERSION: latest
+
 jobs:
 
   build:
@@ -10,11 +15,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: checkout
+    - name: Checkout repository
       uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ github.repository_owner }}/mikrotik_bandwidth_monitor_exporter:latest
     - name: Login to the Docker registry
-      run: echo "${{ github.token }}" | docker login ghcr.io -u $ --password-stdin
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Set metadata for Docker
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        flavor: latest=true
     - name: Publish the Docker image
-      run: docker push ghcr.io/${{ github.repository_owner }}/mikrotik_bandwidth_monitor_exporter:latest
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
