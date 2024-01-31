@@ -1,4 +1,4 @@
-"""foobar: fill me"""
+"""Mikrotik Bandwidth Monitor Exporter Python module."""
 import logging
 import os
 from dataclasses import dataclass
@@ -30,7 +30,6 @@ class MikrotikDataclass:
     webfig_url: str
     api_login: str
     api_password: str
-    request_method: str = "http"
     verify_ssl: bool = False
     request_timeout: int = 30
 
@@ -47,7 +46,7 @@ def is_http_code_ok(request_status_code: requests.codes) -> bool:
 
 @app.route("/metrics")
 def get_kid_control_data_metrics() -> Callable:
-    """fill me"""
+    """Function to query MikroTik Kid Control data to return the metrics."""
     mikrotik_data = current_app.config['MIKROTIK_DATA']
     mikrotik_auth = mikrotik_data.generate_auth()
     data_request = requests.get(
@@ -88,7 +87,11 @@ def get_kid_control_data_metrics() -> Callable:
 
 @app.route("/")
 def main_page() -> str:
-    """fill me"""
+    """Serve the main page.
+
+    Returns:
+        str: basic HTML with main page
+    """
     return ("<h1>Welcome to Mikrotik Bandwidth-Monitor data exporter.</h1>" +
             "Metrics are available: <a href='/metrics'>here</a>.")
 
@@ -106,7 +109,6 @@ def main():
         webfig_url=mikrotik_webfig_url,
         api_login=os.getenv("MIKROTIK_USER", "admin"),
         api_password=os.getenv("MIKROTIK_PASSWORD", ""),
-        request_method=os.getenv("MIKROTIK_REST_API_METHOD", "http"),
         verify_ssl=os.getenv("MIKROTIK_REST_API_VERIFY_SSL", "0") == "1",
         request_timeout=int(os.getenv("MIKROTIK_REQUEST_TIMEOUT", "30"))
     )
@@ -115,7 +117,3 @@ def main():
             disable_warnings()  # pylint: disable=no-member
     app.config['MIKROTIK_DATA'] = mikrotik_dataclass
     serve(app, host=address, port=int(port))
-
-
-if __name__ == '__main__':
-    main()

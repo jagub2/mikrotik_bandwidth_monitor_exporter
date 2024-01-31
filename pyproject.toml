@@ -22,7 +22,7 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/jagub2/..."
+Homepage = "https://github.com/jagub2/mikrotik_bandwidth_monitor_exporter"
 
 [project.scripts]
 mikrotik_bandwidth_monitor_exporter = "mikrotik_bandwidth_monitor_exporter.exporter:main"
